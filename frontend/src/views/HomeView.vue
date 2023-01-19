@@ -136,21 +136,22 @@ import {STATUSES} from '../common/constants'
 
 // функция для обработки аватаров пользователей
 const getImage = image => {
-    // https://vitejs.dev/guide/assets.html#new-url-url-import-meta-url
-    return new URL('../assets/img/${image}', import.meta.url).href
+  // https://vitejs.dev/guide/assets.html#new-url-url-import-meta-url
+  return new URL(`../assets/img/${image}`, import.meta.url).href
 }
 
 const normalizedTasks = rawTasks.map(task => normalizeTask(task))
 
 const columnTasks = normalizedTasks
     // Фильтруем задачи, которые прикреплены к колонке
-    .filter(({columnId}) => columnId)
+    .filter(({ columnId }) => columnId)
     .reduce((accumulator, task) => {
-        task.tag = getTagsArrayFromString(task.tags)
-        if (accumulator[task.columnId]) {
-            accumulator[task.columnId] = [...accumulator[task.columnId], task]
-        } else {
-            accumulator[task.columnId] = [task]
-        } return accumulator
+      task.tags = getTagsArrayFromString(task.tags)
+      if (accumulator[task.columnId]) {
+        accumulator[task.columnId] = [...accumulator[task.columnId], task]
+      } else {
+        accumulator[task.columnId] = [task]
+      }
+      return accumulator
     }, {})
 </script>
