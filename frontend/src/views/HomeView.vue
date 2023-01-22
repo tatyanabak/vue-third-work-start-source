@@ -155,3 +155,6 @@ const columnTasks = normalizedTasks
       return accumulator
     }, {})
 </script>
+
+<style lang="scss" scoped>
+</style>
